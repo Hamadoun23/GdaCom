@@ -767,7 +767,7 @@ $(function () {
         }
     };
 
-    const bgElements = document.querySelectorAll("[data-background]");
+    const bgElements = document.querySelectorAll("[data-background]:not([data-load-strategy='sequential'])");
     if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach((entry) => {
@@ -781,6 +781,58 @@ $(function () {
         bgElements.forEach((el) => observer.observe(el));
     } else {
         bgElements.forEach(setBgImage);
+    }
+
+    const sequentialBgElements = Array.from(document.querySelectorAll("[data-load-strategy='sequential'][data-background]"));
+    if (sequentialBgElements.length) {
+        const loadSequentialBg = (index) => {
+            if (index >= sequentialBgElements.length) {
+                return;
+            }
+            const target = sequentialBgElements[index];
+            if (target && target.getAttribute("data-background")) {
+                setBgImage(target);
+            }
+            scheduleNext(index + 1);
+        };
+
+        const scheduleNext = (nextIndex) => {
+            if (nextIndex >= sequentialBgElements.length) {
+                return;
+            }
+            const runner = () => loadSequentialBg(nextIndex);
+            if ("requestIdleCallback" in window) {
+                requestIdleCallback(runner, { timeout: 500 });
+            } else {
+                setTimeout(runner, 180);
+            }
+        };
+
+        let sequentialTriggered = false;
+        const triggerSequentialLoad = () => {
+            if (sequentialTriggered) {
+                return;
+            }
+            sequentialTriggered = true;
+            loadSequentialBg(0);
+        };
+
+        const sequentialTriggerTarget = document.querySelector(".hero-style4") || sequentialBgElements[0].parentElement;
+        if ("IntersectionObserver" in window && sequentialTriggerTarget) {
+            const seqObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        triggerSequentialLoad();
+                        obs.disconnect();
+                    }
+                });
+            }, { rootMargin: "150px 0px" });
+            seqObserver.observe(sequentialTriggerTarget);
+        } else if (document.readyState === "complete") {
+            triggerSequentialLoad();
+        } else {
+            window.addEventListener("load", triggerSequentialLoad, { once: true });
+        }
     }
 
     var pageSectionColor = $(".bg-solid-color, section");

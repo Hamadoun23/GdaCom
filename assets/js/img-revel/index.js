@@ -3,15 +3,55 @@ import { preloadImages } from './utils.js';
 // 'ImageTrail' is a class designed to manage and animate a sequence of images, reacting to mouse movements.
 import { ImageTrail } from './imageTrail.js';
 
-// Preload all images
-preloadImages('.content__img-inner').then(() => {
-    // Once all images are preloaded, remove the 'loading' class from the body element.
-    document.body.classList.remove('loading');
-    
-    // Instantiate a new ImageTrail object, initializing it with the element that has the class 'content'.
-    // The ImageTrail instance starts managing and animating the sequence of images within the specified element, reacting to mouse movements.
-    const content = document.querySelector('.content')
-    if(content){
-        new ImageTrail(content);
+const content = document.querySelector('.content');
+const heroSection = document.querySelector('.hero-style4');
+
+const supportsPointer =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(pointer: fine)").matches;
+
+const reducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const MIN_WIDTH = 992;
+
+const startImageTrail = () => {
+    if (!content) {
+        document.body.classList.remove('loading');
+        return;
     }
-});
+
+    preloadImages('.content__img-inner').then(() => {
+        document.body.classList.remove('loading');
+        new ImageTrail(content);
+    });
+};
+
+const shouldEnableTrail = content && supportsPointer && !reducedMotion && window.innerWidth >= MIN_WIDTH;
+
+if (!shouldEnableTrail) {
+    document.body.classList.remove('loading');
+} else {
+    const triggerTrail = () => {
+        startImageTrail();
+    };
+
+    if ('IntersectionObserver' in window && heroSection) {
+        const onceObserver = new IntersectionObserver((entries, observer) => {
+            if (entries.some((entry) => entry.isIntersecting)) {
+                observer.disconnect();
+                triggerTrail();
+            }
+        }, { rootMargin: '150px 0px' });
+        onceObserver.observe(heroSection);
+    } else {
+        if (document.readyState === 'complete') {
+            triggerTrail();
+        } else {
+            window.addEventListener('load', triggerTrail, { once: true });
+        }
+    }
+}

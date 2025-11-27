@@ -8,17 +8,18 @@ mousePos = {x: 0, y: 0}; // current mouse position
 cacheMousePos = {...mousePos}; // previous mouse position
 lastMousePos = {...mousePos}; // stores the position of the mouse at the time the most recent image was displayed, serving as a reference point for calculating the distance the cursor has moved in subsequent frames
 
-// This function will be used to handle both mouse and touch events
-const handlePointerMove = (ev) => {
-    ev.preventDefault(); // Needed for touch to avoid scrolling
+const handleMouseMove = (ev) => {
+    mousePos = getPointerPos(ev);
+};
+
+const handleTouchMove = (ev) => {
     if (ev.touches && ev.touches.length > 0) {
-        mousePos = getPointerPos(ev.touches[0]);
-    } else {
+        ev.preventDefault(); // Needed for touch to avoid scrolling
         mousePos = getPointerPos(ev);
     }
 };
 
-window.addEventListener('mousemove', handlePointerMove);
+let pointerListenersAttached = false;
 
 
 export class ImageTrail {
@@ -41,6 +42,12 @@ export class ImageTrail {
     constructor(DOM_el) {
         // Store the reference to the parent DOM element.
         this.DOM.el = DOM_el;
+
+        if (!pointerListenersAttached) {
+            window.addEventListener('mousemove', handleMouseMove, { passive: true });
+            window.addEventListener('touchmove', handleTouchMove, { passive: false });
+            pointerListenersAttached = true;
+        }
 
         // Create and store Image objects for each image element found within the parent DOM element.
         this.images = [...this?.DOM?.el.querySelectorAll('.content__img')].map(img => new Image(img));
