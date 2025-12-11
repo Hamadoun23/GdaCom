@@ -185,7 +185,7 @@
                             </div>
                             <div class="col-12">
                                 <div>
-                                    <h1 class="fw-800">GDA COM</h1>
+                                    <h1 class="fw-800 gda-title" data-animate-letter-hover>GDA COM</h1>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 sm-order-2">
@@ -828,6 +828,24 @@
                                             </div>
                                         </div>
 
+                                        <div class="stackCard mb-20px">
+                                            <div class="d-flex">
+                                                <div class="info d-flex v-align-between">
+                                                    <div>
+                                                        <div
+                                                            class="fit-img h-150px w-200px border-radius-10px o-hidden mb-10px">
+                                                            <img src="AssetsCom/logo/Partenaires/saldy.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="pl-30px ml-30px line-left border-color-transparent-white-light">
+                                                    <h4 class="fw-300">"L'équipe IT de GDA a digitalisé nos processus avec efficacité et précision.
+                                                         Un accompagnement exemplaire, des résultats tangibles."</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -1109,6 +1127,32 @@
     <!-- custom scripts -->
     <script src="assets/js/scripts.js"></script>
     <script type="module" src="assets/js/img-revel/index.js"></script>
+
+    <script>
+        // Animation GSAP : chaque lettre monte/descend au survol
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = document.querySelector('[data-animate-letter-hover]');
+            if (!title || !window.gsap) return;
+
+            // Découper le texte en lettres pour un contrôle individuel
+            const letters = title.textContent.split('');
+            title.textContent = '';
+            letters.forEach((char) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.display = 'inline-block';
+                title.appendChild(span);
+            });
+
+            const animateUp = (el) => gsap.to(el, { y: -48, duration: 0.32, ease: 'power2.out' });
+            const animateDown = (el) => gsap.to(el, { y: 0, duration: 0.32, ease: 'power2.inOut' });
+
+            Array.from(title.children).forEach((letter) => {
+                letter.addEventListener('mouseenter', () => animateUp(letter));
+                letter.addEventListener('mouseleave', () => animateDown(letter));
+            });
+        });
+    </script>
 
 </body>
 
