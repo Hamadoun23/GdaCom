@@ -50,7 +50,8 @@ $(function () {
         }
 
         function toggleRootClass() {
-            document.querySelector("body:not(.notmode)").classList.toggle("light");
+            var bodyEl = document.querySelector("body:not(.notmode)");
+            if (bodyEl) bodyEl.classList.toggle("light");
         }
 
         function toggleLocalStorageItem() {
@@ -67,7 +68,8 @@ $(function () {
             toggleRootClass();
         }
 
-        document.querySelector(".theme-icon").addEventListener("click", () => {
+        var themeIcon = document.querySelector(".theme-icon");
+        if (themeIcon) themeIcon.addEventListener("click", () => {
             toggleLocalStorageItem();
             toggleRootClass();
         });
