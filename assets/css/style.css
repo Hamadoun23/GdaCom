@@ -3890,7 +3890,7 @@ video.bgvid {
 .accordion-button,
 .accordion-button:not(.collapsed) {
   color: inherit;
-  background: transparent;
+  background: transparent; 
   box-shadow: none;
   width: 100%;
   padding: 0;
@@ -9098,7 +9098,7 @@ footer .subscribe p a {
   right: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../imgs/hero/md.png);
+  background-image: url(../../AssetsCom/crea/md1.png);
   background-size: cover;
   pointer-events: none;
 }

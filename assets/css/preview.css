@@ -7269,7 +7269,7 @@ body.loaded {
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: url(../../AssetsCom/Bgnoir.png) center center/cover no-repeat;
   z-index: 99999999999999;
 }
 
@@ -7278,7 +7278,7 @@ body.loaded {
   top: 0;
   width: 100vw;
   height: 110vh;
-  fill: #1d1d1d;
+  fill: rgba(0, 0, 0, 0.28);
 }
 
 .loader-wrap .loader-wrap-heading .load-text {
@@ -9094,7 +9094,7 @@ footer .subscribe p a {
   right: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../imgs/hero/md.png);
+  background-image: url(../../AssetsCom/crea/md1.png);
   background-size: cover;
   pointer-events: none;
 }
