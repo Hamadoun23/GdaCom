@@ -1144,6 +1144,14 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
 .bg-img{
     background-size: cover !important;
 }
+
+.contact-bg-banner .contact-bg-banner__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: top;
+}
+
 .contain-background {
     background-size: contain !important;
 }

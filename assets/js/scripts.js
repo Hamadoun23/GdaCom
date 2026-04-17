@@ -549,16 +549,64 @@ $(function () {
     ------------------------------  Interactive   -----------------------------
     ============================================================================= */
 
+    function renderInteractiveMobilePanel($section, $trigger) {
+        var tab_id = $trigger.attr('data-tab');
+        var $sourceTab = $section.find('.glry-img #' + tab_id).first();
+        var $panel = $section.find('.mobile-interactive-panel');
+
+        if (!$panel.length) {
+            $panel = $('<div class="mobile-interactive-panel"></div>');
+            $section.find('.content').append($panel);
+        }
+
+        if (window.innerWidth < 992 && $sourceTab.length) {
+            $panel.html($sourceTab.html());
+            $section.find('.mobile-interactive-panel').not($panel).empty();
+            $trigger.after($panel);
+        } else {
+            $panel.detach();
+            $section.find('.content').append($panel);
+        }
+    }
+
+    function setInteractiveTab($trigger) {
+        var tab_id = $trigger.attr('data-tab');
+        var $section = $trigger.closest('.interactive-sec');
+
+        $section.find('.cluom').removeClass('current');
+        $trigger.addClass('current');
+
+        $section.find('.glry-img .tab-img').removeClass('current');
+        $section.find("#" + tab_id).addClass('current');
+        renderInteractiveMobilePanel($section, $trigger);
+    }
+
     $('.interactive-sec .cluom').on('mouseenter', function () {
-        var tab_id = $(this).attr('data-tab');
-        $('.interactive-sec .cluom').removeClass('current');
-        $(this).addClass('current');
+        if (window.innerWidth < 992) return;
+        setInteractiveTab($(this));
+    });
 
-        $('.interactive-sec .glry-img .tab-img ').removeClass('current');
-        $("#" + tab_id).addClass('current');
+    $('.interactive-sec .cluom').on('click touchstart', function (e) {
+        if (window.innerWidth >= 992) return;
+        e.preventDefault();
+        setInteractiveTab($(this));
+    });
 
-        if ($(this).hasClass('current')) {
-            return false;
+    $(window).on('resize', function () {
+        $('.interactive-sec').each(function () {
+            var $section = $(this);
+            var $currentTrigger = $section.find('.cluom.current').first();
+            if ($currentTrigger.length) {
+                renderInteractiveMobilePanel($section, $currentTrigger);
+            }
+        });
+    });
+
+    $('.interactive-sec').each(function () {
+        var $section = $(this);
+        var $currentTrigger = $section.find('.cluom.current').first();
+        if ($currentTrigger.length) {
+            renderInteractiveMobilePanel($section, $currentTrigger);
         }
     });
 
@@ -987,6 +1035,74 @@ $(function () {
     $(window).resize(function () {
         setHeightEqualToWidth();
     });
+
+    /* =============================================================================
+    ----------------------  Play videos only on viewport  ---------------------------
+    ============================================================================= */
+
+    function setupScrollTriggeredVideos() {
+        var videos = document.querySelectorAll('video.bgvid, video[autoplay]');
+
+        if (!videos.length) return;
+
+        function prepareVideo(video) {
+            video.muted = true;
+            video.defaultMuted = true;
+            video.playsInline = true;
+            video.setAttribute('muted', '');
+            video.setAttribute('playsinline', '');
+            video.setAttribute('webkit-playsinline', '');
+            video.setAttribute('preload', 'metadata');
+            video.removeAttribute('autoplay');
+            video.autoplay = false;
+            video.pause();
+        }
+
+        function playVideo(video) {
+            var playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(function () { });
+            }
+        }
+
+        videos.forEach(prepareVideo);
+
+        if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+                        playVideo(entry.target);
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, { threshold: [0, 0.45, 0.75] });
+
+            videos.forEach(function (video) {
+                observer.observe(video);
+            });
+        } else {
+            // Fallback for older browsers: play if mostly visible in viewport.
+            function onScrollCheck() {
+                videos.forEach(function (video) {
+                    var rect = video.getBoundingClientRect();
+                    var visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+                    var ratio = Math.max(0, visibleHeight) / Math.max(1, rect.height);
+                    if (ratio >= 0.45) {
+                        playVideo(video);
+                    } else {
+                        video.pause();
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', onScrollCheck, { passive: true });
+            window.addEventListener('resize', onScrollCheck);
+            onScrollCheck();
+        }
+    }
+
+    setupScrollTriggeredVideos();
 
     /* =============================================================================
     -----------------------------  Trigger Plugins  --------------------------------

@@ -4783,6 +4783,13 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
   background-size: cover !important;
 }
 
+.contact-bg-banner .contact-bg-banner__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: top;
+}
+
 .contain-background {
   background-size: contain !important;
 }
@@ -9098,7 +9105,7 @@ footer .subscribe p a {
   right: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../../AssetsCom/crea/md1.png);
+  background-image: url(../../AssetsCom/crea/iCOM.png);
   background-size: cover;
   pointer-events: none;
 }
@@ -9300,12 +9307,24 @@ footer .subscribe p a {
   padding: 220px 0 60px;
   position: relative;
 }
+.hero-style4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../../AssetsCom/Bgorange.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  pointer-events: none;
+}
 .hero-style4 .container {
   position: relative;
   z-index: 9999999;
 }
 .hero-style4 h1 {
-  font-size: 17.5vw;
+  font-size: 12.5vw;
+  text-align: center;
 }
 .hero-style4 .tags a {
   padding: 10px 20px;
@@ -9322,6 +9341,56 @@ footer .subscribe p a {
 .hero-style4 .content__img-inner {
   will-change: transform, opacity;
   backface-visibility: hidden;
+}
+.mobile-hero-slider {
+  display: none;
+}
+.mobile-hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.03);
+}
+.mobile-hero-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.18));
+}
+@keyframes mobileHeroFade {
+  0% {
+    opacity: 1;
+  }
+  8% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  28% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.mobile-hero-slide:nth-child(1) {
+  animation: mobileHeroFade 25s infinite;
+}
+.mobile-hero-slide:nth-child(2) {
+  animation: mobileHeroFade 25s infinite 5s;
+}
+.mobile-hero-slide:nth-child(3) {
+  animation: mobileHeroFade 25s infinite 10s;
+}
+.mobile-hero-slide:nth-child(4) {
+  animation: mobileHeroFade 25s infinite 15s;
+}
+.mobile-hero-slide:nth-child(5) {
+  animation: mobileHeroFade 25s infinite 20s;
 }
 
 .hero-style5 .snap-slide .img,
@@ -10365,12 +10434,15 @@ footer .subscribe p a {
   left: 0;
   padding: 10px;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   transform: translateY(30px);
   max-width: 350px;
   opacity: 0;
   visibility: hidden;
   transition: all 0.7s;
+}
+.interactive-sec .glry-img .tab-img .img img {
+  filter: none !important;
 }
 .interactive-sec .glry-img .tab-img.current {
   opacity: 1;
@@ -10388,6 +10460,18 @@ footer .subscribe p a {
 }
 .interactive-sec .glry-img .tab-img:nth-of-type(5) {
   top: 115px;
+}
+
+@media screen and (min-width: 992px) {
+  .interactive-sec .glry-img {
+    position: sticky;
+    top: 120px;
+    min-height: 420px;
+  }
+  .interactive-sec .glry-img .tab-img.current {
+    top: 50% !important;
+    transform: translateY(-50%);
+  }
 }
 
 .serv-style1 .accordion > .row {
@@ -11639,7 +11723,8 @@ body.light footer .main-color {
     padding-top: 140px;
   }
   .hero-style2 .main-box .caption h1 {
-    font-size: 85px;
+    font-size: 72px;
+    line-height: 1.05;
   }
   .hero-style2 .serv {
     margin-top: 10px;
@@ -11737,13 +11822,27 @@ body.light footer .main-color {
     margin-top: 0 !important;
     margin-bottom: 30px !important;
   }
-  .interactive-sec .glry-img .tab-img {
-    max-width: 100%;
-    top: 0 !important;
+  .interactive-sec .content {
+    order: 1;
   }
-  .interactive-sec .glry-img .tab-img:first-of-type {
-    position: static;
-    margin-bottom: 50px;
+  .interactive-sec .col-lg-4 {
+    display: none;
+  }
+  .interactive-sec .mobile-interactive-panel {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  .interactive-sec .mobile-interactive-panel .img {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .interactive-sec .mobile-interactive-panel img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .interactive-sec .mobile-interactive-panel .cont {
+    padding-top: 15px;
   }
   .serv-style2 .item {
     margin: 0;
@@ -11853,6 +11952,7 @@ body.light footer .main-color {
     margin-bottom: 15px;
   }
 }
+
 @media screen and (max-width: 768px) {
   .sm-mb10 {
     margin-bottom: 10px;
@@ -11942,7 +12042,12 @@ body.light footer .main-color {
     font-size: 70px !important;
   }
   .progress-wrap {
-    display: none;
+    display: block;
+    right: 15px;
+    bottom: 20px;
+    height: 42px;
+    width: 42px;
+    z-index: 1000;
   }
   .loader-wrap .loader-wrap-heading .load-text {
     font-size: 20px;
@@ -11986,6 +12091,12 @@ body.light footer .main-color {
   .h-700px .h-800px {
     height: 650px !important;
   }
+  .services-ident-banner.h-700px .h-800px {
+    height: 100% !important;
+  }
+  .services-ident-banner .bg-img {
+    background-position: 72% bottom !important;
+  }
   .h-600px {
     height: 450px !important;
   }
@@ -12007,8 +12118,27 @@ body.light footer .main-color {
   .hero-style4 {
     padding-bottom: 20px;
   }
+  .hero-style4::before {
+    opacity: 1;
+  }
+  .hero-style4 .mobile-hero-slider {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
   .hero-style4 .justify-content-end {
     display: block !important;
+  }
+  body.creative-agency,
+  body.home-personal,
+  body.modern-agency,
+  body.pages {
+    background-image: url("../../AssetsCom/Bgorange.jpg") !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
   }
   .hero-style3 h1 {
     font-size: 35px !important;
@@ -12024,6 +12154,42 @@ body.light footer .main-color {
   .hero-style2 .main-box,
   .about-md .main-box {
     height: 700px;
+  }
+  .hero-style2 .main-box {
+    padding-top: 112px;
+  }
+  .hero-style2 .awards {
+    padding: 24px 16px 52px;
+  }
+  .hero-style2 .awards .awards-swiper {
+    height: 260px;
+  }
+  .hero-style2 .awards .awards-swiper .swiper-slide {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .hero-style2 .awards .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 12px;
+  }
+  .hero-style2 .awards .item span {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-style2 .awards .controls {
+    bottom: 10px;
+    right: 10px;
   }
   .hero-style8 h1 {
     font-size: 40px !important;
