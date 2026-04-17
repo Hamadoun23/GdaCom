@@ -1006,6 +1006,24 @@ $desk-lg-screen: 1300px;
         }
     }
 
+    body.creative-agency,
+    body.home-personal,
+    body.modern-agency,
+    body.pages {
+        min-height: 100dvh;
+        background-image: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.05) 0%,
+                rgba(0, 0, 0, 0.03) 50%,
+                rgba(0, 0, 0, 0.06) 100%
+            ),
+            url("../../AssetsCom/Bgorange.jpg") !important;
+        background-size: cover, cover !important;
+        background-position: 0 0, 28% 50% !important;
+        background-repeat: no-repeat, no-repeat !important;
+        background-attachment: scroll, scroll !important;
+    }
+
     .hero-style3 {
 
         h1 {
