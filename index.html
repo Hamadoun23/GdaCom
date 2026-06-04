@@ -6,7 +6,7 @@
     <!-- Metas -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="GDA Communication, agence de communication intégrée basée à Bamako, combine créativité, stratégie, digital et savoir-faire média pour amplifier les marques maliennes depuis 2011.">
     <meta name="description" content="GDA Communication, agence de communication intégrée basée à Bamako, combine créativité, stratégie, digital et savoir-faire média pour amplifier les marques maliennes depuis 2011.">
     <meta name="author" content="GDA Communication">
@@ -20,9 +20,14 @@
     <link rel="android-chrome" sizes="192x192" href="AssetsCom/logo/groupe.png">
     <link rel="favicon" sizes="32x32" href="AssetsCom/logo/groupe.png">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
+    <!-- Google Fonts (poids réduits = chargement plus rapide) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="preload" as="image" href="AssetsCom/accueil/hero/1.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="AssetsCom/logo/comBlanc.png">
 
     <!-- Plugins -->
     <link rel="stylesheet" href="assets/css/plugins.css">
@@ -39,7 +44,13 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-attachment: scroll;
+        }
+
+        @media (min-width: 992px) {
+            body.creative-agency {
+                background-attachment: fixed;
+            }
         }
 
     </style>
@@ -95,7 +106,7 @@
 
             <!-- Logo -->
             <a class="logo w-300px" href="#">
-                <img src="AssetsCom/logo/comBlanc.png" alt="logo" style="width: 100%; height: auto; max-height: 80px; object-fit: contain;">
+                <img src="AssetsCom/logo/comBlanc.png" alt="logo" width="300" height="80" fetchpriority="high" decoding="async" style="width: 100%; height: auto; max-height: 80px; object-fit: contain;">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -144,39 +155,39 @@
                             <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/1.webp"></div>
                         </div>
                         <div class="content__img">
-                            <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/2.webp"></div>
+                            <div class="content__img-inner bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/2.webp"></div>
                         </div>
                         <div class="content__img">
-                            <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/3.webp"></div>
+                            <div class="content__img-inner bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/3.webp"></div>
                         </div>
                         <div class="content__img">
-                            <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/4.webp"></div>
+                            <div class="content__img-inner bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/4.webp"></div>
                         </div>
                         <div class="content__img">
-                            <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/5.webp"></div>
+                            <div class="content__img-inner bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/5.webp"></div>
                         </div>
                         <div class="content__img">
-                            <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/6.webp"></div>
+                            <div class="content__img-inner bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/6.webp"></div>
                         </div>
                         <div class="content__img">
-                            <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/7.webp"></div>
+                            <div class="content__img-inner bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/7.webp"></div>
                         </div>
                         <div class="content__img">
-                            <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/8.webp"></div>
+                            <div class="content__img-inner bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/8.webp"></div>
                         </div>
                         <div class="content__img">
-                            <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/9.webp"></div>
+                            <div class="content__img-inner bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/9.webp"></div>
                         </div>
                         <div class="content__img">
-                            <div class="content__img-inner bg-img" data-background="AssetsCom/accueil/hero/10.webp"></div>
+                            <div class="content__img-inner bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/10.webp"></div>
                         </div>
                     </div>
                     <div class="mobile-hero-slider d-block d-md-none">
-                        <div class="mobile-hero-slide" style="background-image: url('AssetsCom/accueil/hero/1.webp');"></div>
-                        <div class="mobile-hero-slide" style="background-image: url('AssetsCom/accueil/hero/2.webp');"></div>
-                        <div class="mobile-hero-slide" style="background-image: url('AssetsCom/accueil/hero/3.webp');"></div>
-                        <div class="mobile-hero-slide" style="background-image: url('AssetsCom/accueil/hero/4.webp');"></div>
-                        <div class="mobile-hero-slide" style="background-image: url('AssetsCom/accueil/hero/5.webp');"></div>
+                        <div class="mobile-hero-slide bg-img" data-background="AssetsCom/accueil/hero/1.webp"></div>
+                        <div class="mobile-hero-slide bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/2.webp"></div>
+                        <div class="mobile-hero-slide bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/3.webp"></div>
+                        <div class="mobile-hero-slide bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/4.webp"></div>
+                        <div class="mobile-hero-slide bg-img" data-load-strategy="sequential" data-background="AssetsCom/accueil/hero/5.webp"></div>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -225,9 +236,7 @@
                     <div class="container-xxl" data-ui-animate data-delay="0.4">
                         <div class="o-hidden border-radius-80px h-700px">
                             <div class="hero-video-wrapper h-800px">
-                                <video loop muted autoplay playsinline class="bgvid">
-                                    <source src="AssetsCom/crea/gdacom1.mp4" type="video/mp4">
-                                </video>
+                                <video loop muted playsinline class="bgvid" preload="none" data-src="AssetsCom/crea/gdacom1.mp4"></video>
                             </div>
                         </div>
                     </div>
@@ -282,7 +291,7 @@
                             </div>
                             <div class="col-lg-3 col-md-6" data-ui-animate data-delay="0.3">
                                 <div class="item-numb mt-30px d-flex align-items-center justify-content-center bord">
-                                    <img src="AssetsCom/accueil/icom.png" alt="" class="w-100px">
+                                    <img src="AssetsCom/accueil/icom.png" alt="iCOM" class="w-100px" loading="lazy" decoding="async">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6" data-ui-animate data-delay="0.4">
@@ -340,7 +349,7 @@
                                 <div class="glry-img pt-30px">
                                     <div id="tab-1" class="tab-img current border-radius-15px">
                                         <div class="img fit-img h-250px border-radius-10px o-hidden">
-                                            <img src="AssetsCom/crea/STRATEGIE360.jpeg" alt="">
+                                            <img loading="lazy" decoding="async" src="AssetsCom/crea/STRATEGIE360.jpeg" alt="Stratégie 360" loading="lazy" decoding="async">
                                         </div>
                                         <div class="cont">
                                             <p class="p-15px fs-14 text-white"><strong>Plans complets et cohérents pour booster visibilité, notoriété et impact global de votre marque.</strong></p>
@@ -365,7 +374,7 @@
                                     </div>
                                     <div id="tab-2" class="tab-img">
                                         <div class="img fit-img h-250px border-radius-10px o-hidden">
-                                            <img src="AssetsCom/crea/web1.jpg" alt="">
+                                            <img loading="lazy" decoding="async" src="AssetsCom/crea/web1.jpg" alt="">
                                         </div>
                                         <div class="cont">
                                             <p class="p-15px fs-14 text-white"><strong>Contenus digitaux, sites et activations en ligne pour attirer, engager et convertir efficacement.</strong></p>
@@ -390,7 +399,7 @@
                                     </div>
                                     <div id="tab-3" class="tab-img">
                                         <div class="img fit-img h-250px border-radius-10px o-hidden">
-                                            <img src="AssetsCom/crea/social.png" alt="">
+                                            <img loading="lazy" decoding="async" src="AssetsCom/crea/social.png" alt="">
                                         </div>
                                         <div class="cont">
                                             <p class="p-15px fs-14 text-white"><strong>Gestion, animation et campagnes puissantes pour développer audience, présence et influence.</strong></p>
@@ -415,7 +424,7 @@
                                     </div>
                                     <div id="tab-4" class="tab-img">
                                         <div class="img fit-img h-250px border-radius-10px o-hidden">
-                                            <img src="AssetsCom/crea/visuel.jpeg" alt="">
+                                            <img loading="lazy" decoding="async" src="AssetsCom/crea/visuel.jpeg" alt="">
                                         </div>
                                         <div class="cont">
                                             <p class="p-15px fs-14 text-white"><strong>Designs premium, vidéos, motion et contenus créatifs valorisant votre image et vos messages.</strong></p>
@@ -440,7 +449,7 @@
                                     </div>
                                     <div id="tab-5" class="tab-img">
                                         <div class="img fit-img h-250px border-radius-10px o-hidden">
-                                            <img src="AssetsCom/crea/Calendrier.jpeg" alt="">
+                                            <img loading="lazy" decoding="async" src="AssetsCom/crea/Calendrier.jpeg" alt="">
                                         </div>
                                         <div class="cont">
                                             <p class="p-15px fs-14 text-white"><strong>Brochures, flyers, rapports, cartes, supports premium imprimés avec finitions professionnelles.</strong></p>
@@ -515,7 +524,7 @@
                                 <div class="snap-slide">
                                     <div class="main-img" data-overlay-dark="5">
                                         <div class="img">
-                                            <img src="AssetsCom/crea/saldy2.jpg" alt="">
+                                            <img loading="lazy" decoding="async" src="AssetsCom/crea/saldy2.jpg" alt="">
                                         </div>
                                         <div class="cont">
                                             <div class="container">
@@ -542,9 +551,7 @@
                                     <div class="main-img" data-overlay-dark="5">
                                         <div class="img">
                                             <div class="hero-video-wrapper">
-                                                <video loop muted autoplay playsinline class="bgvid">
-                                                    <source src="AssetsCom/crea/motors.mp4" type="video/mp4">
-                                                </video>
+                                                <video loop muted playsinline class="bgvid" preload="none" data-src="AssetsCom/crea/motors.mp4"></video>
                                             </div>
                                         </div>
                                         <div class="cont">
@@ -572,9 +579,7 @@
                                     <div class="main-img" data-overlay-dark="5">
                                         <div class="img">
                                             <div class="hero-video-wrapper">
-                                                <video loop muted autoplay playsinline class="bgvid">
-                                                    <source src="AssetsCom/crea/DanayaExpress.mp4" type="video/mp4">
-                                                </video>
+                                                <video loop muted playsinline class="bgvid" preload="none" data-src="AssetsCom/crea/DanayaExpress.mp4"></video>
                                             </div>
                                         </div>
                                         <div class="cont">
@@ -602,9 +607,7 @@
                                     <div class="main-img" data-overlay-dark="5">
                                         <div class="img">
                                             <div class="hero-video-wrapper">
-                                                <video loop muted autoplay playsinline class="bgvid">
-                                                    <source src="AssetsCom/crea/galetsvideo.mp4" type="video/mp4">
-                                                </video>
+                                                <video loop muted playsinline class="bgvid" preload="none" data-src="AssetsCom/crea/galetsvideo.mp4"></video>
                                             </div>
                                         </div>
                                         <div class="cont">
@@ -634,25 +637,25 @@
                             <div class="snap-slider-thumbs-wrapper">
                                 <div class="thumb-slide">
                                     <div class="thumb-slide-img fit-img">
-                                        <img src="AssetsCom/crea/saldy5.jpg" alt="">
+                                        <img loading="lazy" decoding="async" src="AssetsCom/crea/saldy5.jpg" alt="">
                                     </div>
                                     <a class="slide-link" href="project-details.html"></a>
                                 </div>
                                 <div class="thumb-slide">
                                     <div class="thumb-slide-img fit-img">
-                                        <img src="AssetsCom/crea/Stand2.jpeg" alt="">
+                                        <img loading="lazy" decoding="async" src="AssetsCom/crea/Stand2.jpeg" alt="">
                                     </div>
                                     <a class="slide-link" href="project-details.html"></a>
                                 </div>
                                 <div class="thumb-slide">
                                     <div class="thumb-slide-img fit-img">
-                                        <img src="AssetsCom/crea/bdm1.jpeg" alt="">
+                                        <img loading="lazy" decoding="async" src="AssetsCom/crea/bdm1.jpeg" alt="">
                                     </div>
                                     <a class="slide-link" href="project-details.html"></a>
                                 </div>
                                 <div class="thumb-slide">
                                     <div class="thumb-slide-img fit-img">
-                                        <img src="AssetsCom/crea/tmc1.jpg" alt="">
+                                        <img loading="lazy" decoding="async" src="AssetsCom/crea/tmc1.jpg" alt="">
                                     </div>
                                     <a class="slide-link" href="project-details.html"></a>
                                 </div>
@@ -795,7 +798,7 @@
                                                     <div>
                                                         <div
                                                             class="fit-img h-150px w-200px border-radius-10px o-hidden mb-10px">
-                                                            <img src="AssetsCom/logo/Partenaires/Tmotors.jpg" alt="">
+                                                            <img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/Tmotors.jpg" alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -814,7 +817,7 @@
                                                     <div>
                                                         <div
                                                             class="fit-img h-200px w-250px border-radius-10px o-hidden mb-10px">
-                                                            <img src="AssetsCom/logo/Partenaires/toglogo.jpg" alt=""
+                                                            <img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/toglogo.jpg" alt=""
                                                                 style="width: 100%; height: 100%; object-fit: contain; padding: 10px; background: #fff;">
                                                         </div>
                                                     </div>
@@ -833,7 +836,7 @@
                                                     <div>
                                                         <div
                                                             class="fit-img h-150px w-200px border-radius-10px o-hidden mb-10px">
-                                                            <img src="AssetsCom/logo/Partenaires/BDM2.jpeg" alt="">
+                                                            <img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/BDM2.jpeg" alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -851,7 +854,7 @@
                                                     <div>
                                                         <div
                                                             class="fit-img h-150px w-200px border-radius-10px o-hidden mb-10px">
-                                                            <img src="AssetsCom/logo/Partenaires/saldy.jpg" alt="">
+                                                            <img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/saldy.jpg" alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -878,60 +881,60 @@
                     <div class="slide-har st1">
                         <div class="box">
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/BDM.png" alt="BDM" style="transform: scale(2); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/BDM.png" alt="BDM" style="transform: scale(2); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/HCNLS.png" alt="HCNLS" style="transform: scale(1.4); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/HCNLS.png" alt="HCNLS" style="transform: scale(1.4); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/TOGUNAMOTORS.png" alt="Toguna Motors" style="transform: scale(1.8); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/TOGUNAMOTORS.png" alt="Toguna Motors" style="transform: scale(1.8); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/LOGOAGL.png" alt="AGL" style="transform: scale(2); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/LOGOAGL.png" alt="AGL" style="transform: scale(2); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/logosup.png" alt="SUP" style="transform: scale(1.5); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/logosup.png" alt="SUP" style="transform: scale(1.5); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/primature.png" alt="Primature" style="transform: scale(1.5); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/primature.png" alt="Primature" style="transform: scale(1.5); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/Tmclogo.png" alt="TMC" style="transform: scale(2); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/Tmclogo.png" alt="TMC" style="transform: scale(2); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/saldy2.png" alt="Saldy" style="transform: scale(1.5); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/saldy2.png" alt="Saldy" style="transform: scale(1.5); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/FLYHADJ2.png" alt="FlyHadj" style="transform: scale(2); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/FLYHADJ2.png" alt="FlyHadj" style="transform: scale(2); transform-origin: center;"></a>
                             </div>
                         </div>
                         <div class="box">
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/BDM.png" alt="BDM" style="transform: scale(2); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/BDM.png" alt="BDM" style="transform: scale(2); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/HCNLS.png" alt="HCNLS" style="transform: scale(1.4); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/HCNLS.png" alt="HCNLS" style="transform: scale(1.4); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/TOGUNAMOTORS.png" alt="Toguna Motors" style="transform: scale(1.8); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/TOGUNAMOTORS.png" alt="Toguna Motors" style="transform: scale(1.8); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/LOGOAGL.png" alt="AGL" style="transform: scale(2); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/LOGOAGL.png" alt="AGL" style="transform: scale(2); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/logosup.png" alt="SUP" style="transform: scale(1.5); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/logosup.png" alt="SUP" style="transform: scale(1.5); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/primature.png" alt="Primature" style="transform: scale(1.5); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/primature.png" alt="Primature" style="transform: scale(1.5); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/Tmclogo.png" alt="TMC" style="transform: scale(2); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/Tmclogo.png" alt="TMC" style="transform: scale(2); transform-origin: center;"></a>
                             </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/saldy2.png" alt="Saldy" style="transform: scale(1.5); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/saldy2.png" alt="Saldy" style="transform: scale(1.5); transform-origin: center;"></a>
                         </div>
                             <div class="item text-align-center">
-                                <a href="#0"><img src="AssetsCom/logo/Partenaires/FLYHADJ2.png" alt="FlyHadj" style="transform: scale(2); transform-origin: center;"></a>
+                                <a href="#0"><img loading="lazy" decoding="async" src="AssetsCom/logo/Partenaires/FLYHADJ2.png" alt="FlyHadj" style="transform: scale(2); transform-origin: center;"></a>
                             </div>
                         </div>
                     </div>
@@ -1104,22 +1107,22 @@
 
 
     <!-- jQuery -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/jquery-migrate-3.4.0.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js" defer></script>
+    <script src="assets/js/jquery-migrate-3.4.0.min.js" defer></script>
 
     <!-- plugins -->
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/plugins.js" defer></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js" defer></script>
 
-    <script src="assets/js/gsap.min.js"></script>
-    <script src="assets/js/ScrollSmoother.min.js"></script>
-    <script src="assets/js/ScrollTrigger.min.js"></script>
-    <script src="assets/js/smoother-script.js"></script>
-    <script src="assets/js/springer.min.js"></script>
+    <script src="assets/js/gsap.min.js" defer></script>
+    <script src="assets/js/ScrollSmoother.min.js" defer></script>
+    <script src="assets/js/ScrollTrigger.min.js" defer></script>
+    <script src="assets/js/smoother-script.js" defer></script>
+    <script src="assets/js/springer.min.js" defer></script>
 
     <!-- custom scripts -->
-    <script src="assets/js/scripts.js"></script>
-    <script type="module" src="assets/js/img-revel/index.js"></script>
+    <script src="assets/js/scripts.js" defer></script>
+    <script type="module" src="assets/js/img-revel/index.js" defer></script>
 
     <script>
         // Animation GSAP : chaque lettre monte/descend au survol

@@ -9,8 +9,14 @@ const docEl = document.documentElement;
  */
 const preloadImages = (selector = 'img') => {
     return new Promise((resolve) => {
-        // The imagesLoaded library is used to ensure all images (including backgrounds) are fully loaded.
-        imagesLoaded(document.querySelectorAll(selector), {background: true}, resolve);
+        const targets = selector instanceof Element
+            ? [selector]
+            : document.querySelectorAll(selector);
+        if (!targets.length) {
+            resolve();
+            return;
+        }
+        imagesLoaded(targets, { background: true }, resolve);
     });
 };
 

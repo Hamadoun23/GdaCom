@@ -502,20 +502,26 @@ $(function () {
         },
     });
 
-    var swiperVer = new Swiper('.portfolio-vertical .swiper-container', {
-        direction: 'vertical',
-        slidesPerView: 7,
-        centeredSlides: true,
-        spaceBetween: 0,
-        mousewheel: true,
-        grabCursor: true,
-        loop: true,
-        speed: 1500,
-        autoplay: {
-            delay: 1500,
-            disableOnInteraction: false,
-        },
-    });
+    if ($('.portfolio-vertical .swiper-container').length) {
+        var isServicesPage = document.body.classList.contains('home-personal');
+        var swiperVer = new Swiper('.portfolio-vertical .swiper-container', {
+            direction: 'vertical',
+            slidesPerView: window.innerWidth < 768 ? 3 : 7,
+            centeredSlides: true,
+            spaceBetween: 0,
+            mousewheel: !isServicesPage,
+            grabCursor: true,
+            loop: true,
+            speed: isServicesPage ? 500 : 1500,
+            autoplay: isServicesPage ? false : {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            watchSlidesProgress: true,
+            observer: true,
+            observeParents: true,
+        });
+    }
 
 
     /* =============================================================================
@@ -1041,9 +1047,31 @@ $(function () {
     ============================================================================= */
 
     function setupScrollTriggeredVideos() {
-        var videos = document.querySelectorAll('video.bgvid, video[autoplay]');
+        var videos = document.querySelectorAll('video.bgvid, video[data-src]');
 
         if (!videos.length) return;
+
+        function getVideoSrc(video) {
+            return video.getAttribute('data-src') || (video.querySelector('source') && video.querySelector('source').getAttribute('src'));
+        }
+
+        function ensureVideoSource(video) {
+            if (video.dataset.srcLoaded === 'true') {
+                return;
+            }
+            var src = getVideoSrc(video);
+            if (!src) {
+                return;
+            }
+            if (!video.querySelector('source')) {
+                var source = document.createElement('source');
+                source.src = src;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+            }
+            video.dataset.srcLoaded = 'true';
+            video.load();
+        }
 
         function prepareVideo(video) {
             video.muted = true;
@@ -1052,17 +1080,22 @@ $(function () {
             video.setAttribute('muted', '');
             video.setAttribute('playsinline', '');
             video.setAttribute('webkit-playsinline', '');
-            video.setAttribute('preload', 'metadata');
+            video.setAttribute('preload', 'none');
             video.removeAttribute('autoplay');
             video.autoplay = false;
             video.pause();
         }
 
         function playVideo(video) {
+            ensureVideoSource(video);
             var playPromise = video.play();
             if (playPromise && typeof playPromise.catch === 'function') {
                 playPromise.catch(function () { });
             }
+        }
+
+        function pauseVideo(video) {
+            video.pause();
         }
 
         videos.forEach(prepareVideo);
@@ -1070,13 +1103,13 @@ $(function () {
         if ('IntersectionObserver' in window) {
             var observer = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
-                    if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
                         playVideo(entry.target);
                     } else {
-                        entry.target.pause();
+                        pauseVideo(entry.target);
                     }
                 });
-            }, { threshold: [0, 0.45, 0.75] });
+            }, { threshold: [0, 0.35, 0.6], rootMargin: '120px 0px' });
 
             videos.forEach(function (video) {
                 observer.observe(video);
@@ -1217,7 +1250,7 @@ $(window).on("load", function () {
     body.addClass('loaded');
     setTimeout(function () {
         body.removeClass('loaded');
-    }, 1500);
+    }, 600);
 
 
     /* =============================================================================
@@ -1353,7 +1386,7 @@ $(function () {
     const flat = "M0 2S175 1 500 1s500 1 500 1V0H0Z";
 
     tl.to(".loader-wrap-heading .load-text , .loader-wrap-heading .cont", {
-        delay: 1.5,
+        delay: 0.45,
         y: -100,
         opacity: 0,
     });

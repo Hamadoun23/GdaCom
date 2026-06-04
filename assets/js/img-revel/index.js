@@ -24,9 +24,18 @@ const startImageTrail = () => {
         return;
     }
 
-    preloadImages('.content__img-inner').then(() => {
+    const heroFrames = document.querySelectorAll('.content__img-inner');
+    const firstFrame = heroFrames[0];
+    const preloadFirst = firstFrame
+        ? preloadImages(firstFrame)
+        : Promise.resolve();
+
+    preloadFirst.then(() => {
         document.body.classList.remove('loading');
         new ImageTrail(content);
+        if (heroFrames.length > 1) {
+            preloadImages('.content__img-inner');
+        }
     });
 };
 
